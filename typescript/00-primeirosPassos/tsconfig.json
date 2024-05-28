@@ -1,0 +1,6 @@
+{
+  "compilerOptions": {
+    "target": "ESNext", // indica qual versão do JS será a base do compilador. Neste caso, a mais recente disponível                             
+    "strict": true, // como true, uma de suas funções é não deixar nenhum tipo de dado ser "any", a não ser que seja especificado por nós          
+  }
+}
