@@ -1,6 +1,21 @@
 const animaisMenu = document.querySelectorAll(".js-animaisMenu li");
 const animaisDescricao = document.querySelectorAll(".js-animaisDescricao section");
+const accordionList = document.querySelectorAll(".js-accordion dt");
 const className = "ativo";
+
+function initAccordion() {
+  if (accordionList.length) {
+    accordionList[0].classList.add("ativo");
+    accordionList[0].nextElementSibling.classList.add("ativo");
+    
+    accordionList.forEach((item) => {
+      item.addEventListener("click", () => {
+        item.classList.toggle(className);
+        item.nextElementSibling.classList.toggle(className);
+      })
+    })
+  }
+}
 
 function mostrarDescricaoAnimal() {
   if (animaisMenu.length && animaisDescricao.length) {
@@ -20,3 +35,4 @@ function mostrarDescricaoAnimal() {
 }
 
 mostrarDescricaoAnimal();
+initAccordion()
