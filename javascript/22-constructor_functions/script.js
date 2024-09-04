@@ -104,7 +104,7 @@ const DomObjeto = {
   // Se mudarmos a propriedade "seletor", o objeto Dom atribuirá seus métodos ao novo seletor 
   element() {
     return document.querySelector(this.seletor); 
-    // Dom.element(), no console, já retorna o elemento selecionado
+    // DomObjeto.element(), no console, já retorna o elemento selecionado
   },
   ativar() {
     this.element().classList.add("ativo");
@@ -160,7 +160,7 @@ bruno.andar();
 // Crie uma Constructor Function (Dom) para manipulação
 // de listas de elementos do dom. Deve conter as seguintes
 // propriedades e métodos:
-// 1 elements - retorna NodeList com os elementos selecionados (propriedade, não deve precisará ser executada!)
+// 1 elements - retorna NodeList com os elementos selecionados (propriedade, não deve precisar ser executada!)
 // 2 addClass(classe) - adiciona a classe a todos os elementos
 // 3 removeClass(classe) - remove a classe a todos os elementos
 function DomExercicio(seletor) {
