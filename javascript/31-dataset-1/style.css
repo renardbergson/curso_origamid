@@ -1,0 +1,15 @@
+[data-elemento] {
+  color: red;
+}
+
+/* ou selecionar por valor específico... */
+
+[data-elemento="uma div"] {
+  font-weight: bold;
+}
+
+/* ou selecionar com base no início do valor...  (começa com "uma div") */
+
+[data-elemento^="uma div"] {
+  font-weight: bold;
+}
