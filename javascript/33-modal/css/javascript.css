@@ -1,0 +1,51 @@
+/* conteúdo que se relaciona com o JavaScript */
+.js [data-content="descricao"] section {
+  /* quando existir a classe "js" em algum elemento pai... (neste caso, o html) */
+  /* o display none, que ativa as animações, só será ativado se uma classe "js" estiver adicionada ao html do documento, ou seja, se essa classe estiver lá, significa que o usuário está com o javascript habilitado no browser, caso contrário, todo o conteúdo será mostrado, sem animações */
+  display: none;
+}
+
+[data-content="descricao"] section.ativo {
+  display: block;
+}
+
+[data-content="descricao"] section.ativo.show-right {
+  animation: show-right .6s forwards ease;
+  position: relative;
+}
+
+[data-content="descricao"] section.ativo.show-down {
+  animation: show-down .6s forwards ease;
+  position: relative;
+}
+
+.js [data-anime="accordion"] dd {
+  display: none;  
+}
+
+[data-anime="accordion"] dd.ativo {
+  display: block;
+  animation: accordionSlideDown 1s forwards ease;  
+}
+
+.js [data-anime="accordion"] dt::after {
+  content: "🔻";
+  margin-left: 10px;
+}
+
+.js [data-anime="accordion"] dt.ativo::after {
+  content: "🔺";
+  margin-left: 10px;
+}
+
+.js [data-anime="fade"] {
+  opacity: 0;
+  position: relative;
+  left: -30%;
+  transition: .5s;
+}
+
+[data-anime="fade"].ativo {
+  left: 0;
+  opacity: 1;
+}
