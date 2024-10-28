@@ -1,4 +1,7 @@
 // ===================== EXERCÍCIOS =====================
+// Defina a interface da API: https://api.origamid.dev/json/cursos.json e mostre os dados na tela.
+// Existem apenas dois níveis de cursos, Iniciante (iniciante) e Avançado (avancado). Se for para iniciante pinte o título de azul, para avançado pinte de vermelho.
+
 interface Curso {
   nome: string;
   horas: number;
@@ -22,23 +25,18 @@ async function fetchCursos() {
 // prettier-ignore
 function mostrarCursos(cursos: Array<Curso>) { // ou Curso[] 💡
   // "cursos" não é do tipo "Curso" apenas, é uma array de interfaces do tipo "Curso" 💡
-  return cursos.map((item) => {
+  return cursos.map((curso) => {
     let color: string;  
-
-    if (item.nivel === "iniciante") {
-      color = "blue";   // Cor azul para nível iniciante
-    } else {
-      color = "red";    // Cor vermelha para nível avançado
-    }
+    curso.nivel === "iniciante" ? color = "blue" : color = "red";
 
     return `
-      <h1 style="color:${color}">${item.nome}</h1>
-      <p>Horas: ${item.horas}</p>
-      <p>Aulas: ${item.aulas}</p>
-      <p>Nível: ${item.nivel === "iniciante" ? "Iniciante" : "Avançado"}</p>
-      <p>Modalidade: ${item.gratuito ? "Gratuito" : "Pago"}</p>
-      <p>Tags: ${item.tags.join(", ")}</p>
-      <p>ID das aulas: ${item.idAulas.join(", ")}</p>
+      <h1 style="color:${color}">${curso.nome}</h1>
+      <p>Horas: ${curso.horas}</p>
+      <p>Aulas: ${curso.aulas}</p>
+      <p>Nível: ${curso.nivel === "iniciante" ? "Iniciante" : "Avançado"}</p>
+      <p>Modalidade: ${curso.gratuito ? "Gratuito" : "Pago"}</p>
+      <p>Tags: ${curso.tags.join(", ")}</p>
+      <p>ID das aulas: ${curso.idAulas.join(", ")}</p>
       <br/>
     `;
   });
