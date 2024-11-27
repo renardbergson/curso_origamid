@@ -1,0 +1,75 @@
+// Este é o arquivo de referência da aula, de modo que contém todas as anotações.
+// O arquivo enxuto, apenas com as opções realmente úteis, que serão usadas nas aulas seguintes é o arquivo tsconfig.json
+
+{
+  // Compila ao salvar (já é o padrão)
+  "compileOnSave": true,
+
+  // Opções do compilador
+  "compilerOptions": {
+    // Versão do JavaScript gerada ao salvar
+    "target": "ESNext",
+
+    // Não deixa o TS compilar se houver erros no código
+    "noEmitOnError": true,
+
+    // Versão do javascript type module (já é o padrão)
+    "module": "ESNext",
+
+    // Vai usar bibliotecas do ESNext e do DOM (como "querySelector()", por exemplo)
+    // PS: (já é o padrão)
+    "lib": ["ESNext", "DOM"],
+
+    // Gera source map ao compilar. Ou seja, em caso de erros de runtime, a linha referida no console será equivalente à linha existente no arquivo .ts, e nao no arquivo .js, o que nos ajuda a debugar
+    "sourceMap": true,
+
+    // Não compilar
+    "noEmit": false,
+
+    // Permite importar arquivos JavaScript no código TypeScript
+    "allowJs": true,
+
+    // Remove os comentários
+    "removeComments": true,
+
+    // Modo estrito (inclui outras opções)
+    // Ou seja, se esta opção estiver "true", todas as propriedades a seguir, antecedidas por brackets [], também estarão "true", assim como algumas outras não abordadas aqui
+    "strict": true,
+
+    // [strict] É necessario indicar o tipo de dado dos que não são inferidos, como os argumentos de função, por exemplo
+    "noImplicitAny": true,
+
+    // [strict] Adiciona "use strict" ao arquivo JavaScript
+    "alwaysStrict": true,
+
+    // [strict] Verifica a possibilidade de um dado ser "null" ou "undefined", nos casos onde usamos querySelector, por exemplo
+    "strictNullChecks": true,
+
+    // [strict] Torna necessário anotar o this, ao referenciá-lo. Ex: ...this: HTMLElement
+    // Lembre-se: em funções, o "this" é sempre o primeiro argumento de uma função e, para referenciá-lo é necessário usar exatamente essa palavra reservada
+    "noImplicitThis": true,
+    //========================================================================================
+
+    // Indica a possibilidade de retornos "undefined", em cenários em que nem todas as possibilidades são tratadas
+    "noImplicitReturns": true,
+
+    // Indica parâmetros e variáveis que não foram utilizados (são "false" por padrão)
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+
+    // Informa, direciona, configura um diretório para os arquivos compilados .ts
+    // Isso é bem útil para organizar a pasta do projeto, não deixando arquivos .js e .ts juntos na mesma pasta
+    // PS: é necessário alterar o caminho de referência também no index.html!
+    "outDir": "dist"
+  },
+
+  // Compila o que estiver nas pastas referenciadas. Por exemplo: "src"
+  "include": ["src"],
+
+  // Não compila o que estiver na pasta node_modules
+  // PS: por padrão, se utilizarmos o "include", tudo que estiver fora será excluido "exclude"
+  "exclude": ["node_modules"]
+}
+
+// ============ DEMAIS CONFIGURAÇÕES ============
+// https://www.typescriptlang.org/tsconfig
