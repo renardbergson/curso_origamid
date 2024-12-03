@@ -1,7 +1,7 @@
 import MoedaParaNumero from "./moedaParaNumero";
 import stringToDate from "./stringToDate";
 
-function normalizarTransacao(transacao: TransacaoAPI) {
+function normalizarTransacao(transacao: TransacaoAPI): Transacao {
   return {
     nome: transacao.Nome,
     id: transacao.ID,

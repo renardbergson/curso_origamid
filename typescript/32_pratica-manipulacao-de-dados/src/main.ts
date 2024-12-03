@@ -25,6 +25,7 @@
 // ==================================================================================================
 import checkInterface from "./checkInterface";
 import fetchData from "./fetchData";
+import formatarEmReal from "./formatarEmReal";
 import normalizarTransacao from "./normalizarTransacao";
 
 const handleData = async () => {
@@ -48,7 +49,7 @@ const handleData = async () => {
     )
   ) {
     const transacoes = data.map(normalizarTransacao);
-    transacoes.forEach((item) => console.log(item.data));
+    preencherTabela(transacoes);
     // Podemos passar a função "normalizarTransacao" diretamente no método .map() porque o .map() aceita uma função como argumento, e essa função é chamada automaticamente para cada elemento do array (data), recebendo como parâmetro o elemento atual de cada iteração. 💡
     // POR QUE ISSO FUNCIONA?
     // A função "normalizarTransacao" está definida para receber um **parâmetro** do tipo "TransacaoAPI" e retorna um **valor** do tipo "Transacao".
@@ -57,5 +58,27 @@ const handleData = async () => {
     throw new Error("Os dados obtidos não possuem o formato esperado!");
   }
 };
+
+function preencherTabela(transacoes: Transacao[]): void {
+  const tabela = document.querySelector("#transacoes tbody");
+
+  if (!tabela) return; // error
+
+  transacoes.forEach((transacao) => {
+    const alinhamentoPreco = transacao.valor ? "left" : "center";
+
+    tabela.innerHTML += `
+      <tr>
+        <td>${transacao.nome}</td>
+        <td>${transacao.email}</td>
+        <td style="text-align: ${alinhamentoPreco};">
+          ${transacao.valor ? formatarEmReal(transacao.valor) : "-"}
+        </td>
+        <td>${transacao.pagamento}</td>
+        <td>${transacao.status}</td>
+      </tr>
+    `;
+  });
+}
 
 handleData();

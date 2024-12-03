@@ -5,15 +5,36 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
+      h2,
+      p {
+        margin-left: 1rem;
+      }
+
+      h2 {
+        border-top: 6px solid ghostwhite;
+        padding-top: 1rem;
+      }
+
+      p {
+        border-top: 3px solid ghostwhite;
+      }
+
       table {
         width: 100%;
+        border-spacing: 0;
         text-align: left;
       }
+
       table tr:nth-child(even) {
         background-color: ghostwhite;
       }
+
+      table th,
       table td {
-        padding: 5px;
+        padding: 0.5rem 1rem;
+      }
+
+      table td {
         font-size: 0.85rem;
       }
     </style>
@@ -21,7 +42,7 @@
   </head>
   <body>
     <h2>Dados das Transações</h2>
-    <table>
+    <table id="transacoes">
       <thead>
         <tr>
           <th>Nome</th>
