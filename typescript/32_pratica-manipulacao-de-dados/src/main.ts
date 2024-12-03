@@ -24,61 +24,26 @@
 // Link do projeto de referência: https://www.origamid.com/projetos/typescript/dados/ 💡
 // ==================================================================================================
 import fetchData from "./fetchData";
-
-type PagamentoTransacao = "Boleto" | "Cartão de Crédito";
-type StatusTransacao =
-  | "Paga"
-  | "Aguardando pagamento"
-  | "Recusada pela operadora de cartão"
-  | "Estornada";
-
-interface TransacaoAPI {
-  ["Status"]: StatusTransacao;
-  ["ID"]: number;
-  ["Data"]: string;
-  ["Nome"]: string;
-  ["Forma de Pagamento"]: PagamentoTransacao;
-  ["Email"]: string;
-  ["Valor (R$)"]: string;
-  ["Cliente Novo"]: number;
-}
+import normalizarTransacao from "./normalizarTransacao";
 
 const handleData = async () => {
   const data = await fetchData<TransacaoAPI[]>(
     "https://api.origamid.dev/json/transacoes.json"
   );
 
-  if (data) {
-    data.forEach((transacao) => {
-      console.log(transacao);
-    });
-  }
+  if (!data) return; // error
+
+  const transacoes = data.map(normalizarTransacao);
+  // Podemos passar a função "normalizarTransacao" diretamente no método .map() porque o .map() aceita uma função como argumento, e essa função é chamada automaticamente para cada elemento do array (data), recebendo como parâmetro o elemento atual de cada iteração. 💡
+  // POR QUE ISSO FUNCIONA?
+  // A função "normalizarTransacao" está definida para receber um **parâmetro** do tipo "TransacaoAPI" e retorna um **valor** do tipo "Transacao".
+  // Essa assinatura corresponde exatamente ao que o .map() espera: uma função que itera sobre cada elemento de uma array (data), retornando uma nova array (transacoes). 💡
+  console.log(transacoes);
 };
 
 handleData();
 
-/* async function fetchData(url: string): Promise<void> {
-  try {
-    const data = await fetch(url);
-    const json = await data.json();
-    const stringHTML = await handleData(json);
-    handleHTML(stringHTML);
-  } catch (error) {
-    console.error("Não foi possível obter os dados das transações:" + error);
-  }
-}
-
-interface Transacao {
-  ["Status"]: string;
-  ["ID"]: number;
-  ["Data"]: string;
-  ["Nome"]: string;
-  ["Forma de Pagamento"]: "string";
-  ["Email"]: string;
-  ["Valor (R$)"]: string;
-  ["Cliente Novo"]: number;
-}
-
+/* 
 interface TransacaoTela {
   nome: string;
   email: string;
