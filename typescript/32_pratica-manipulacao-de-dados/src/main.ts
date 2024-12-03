@@ -48,11 +48,13 @@ const handleData = async () => {
     )
   ) {
     const transacoes = data.map(normalizarTransacao);
-    console.log(transacoes);
+    transacoes.forEach((item) => console.log(item.data));
     // Podemos passar a função "normalizarTransacao" diretamente no método .map() porque o .map() aceita uma função como argumento, e essa função é chamada automaticamente para cada elemento do array (data), recebendo como parâmetro o elemento atual de cada iteração. 💡
     // POR QUE ISSO FUNCIONA?
     // A função "normalizarTransacao" está definida para receber um **parâmetro** do tipo "TransacaoAPI" e retorna um **valor** do tipo "Transacao".
     // Essa assinatura corresponde exatamente ao que o .map() espera: uma função que itera sobre cada elemento de uma array (data), retornando uma nova array (transacoes). 💡
+  } else {
+    throw new Error("Os dados obtidos não possuem o formato esperado!");
   }
 };
 

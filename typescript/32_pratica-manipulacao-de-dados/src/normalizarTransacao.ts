@@ -1,10 +1,11 @@
 import MoedaParaNumero from "./moedaParaNumero";
+import stringToDate from "./stringToDate";
 
 function normalizarTransacao(transacao: TransacaoAPI) {
   return {
     nome: transacao.Nome,
     id: transacao.ID,
-    data: transacao.Data,
+    data: stringToDate(transacao.Data),
     status: transacao.Status,
     email: transacao.Email,
     moeda: transacao["Valor (R$)"],
