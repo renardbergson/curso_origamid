@@ -1,29 +1,30 @@
 // =============== MANIPULAÇÃO DE DADOS ===============
 // 1 - Acesse os dados da api: https://api.origamid.dev/json/transacoes.json
 
-// 2 - Mostre em uma tabela os dados de cada transação.
+// 2 - Organize o código em pequenos módulos.
 
-// 3 - Calcule:
+// 5 - Normalize os dados da API, se achar necessário. (remover espaços, remover caracteres especiais, deixar tudo minúsculo, etc)
 
-// 3.1 - Soma total dos valores
+// 4 - Mostre em uma tabela os dados de cada transação.
 
-// 3.2 - Transações por meio de pagamento.
+// 5 - Calcule:
 
-// 3.3 - Transações por status.
+// 5.1 - Soma total dos valores
 
-// 3.4 - Total de vendas por dia da semana.
+// 5.2 - Transações por meio de pagamento.
 
-// 3.5 - Dia da semana com mais vendas.
+// 5.3 - Transações por status.
 
-// 4 - Mostre as estatísticas na tela.
+// 5.4 - Total de vendas por dia da semana.
 
-// 5 - Organize o código em pequenos módulos.
+// 5.5 - Dia da semana com mais vendas.
 
-// 6 - Normalize os dados da API, se achar necessário. (remover espaços, remover caracteres especiais, deixar tudo minúsculo, etc)
+// 6 - Mostre as estatísticas na tela.
 
 // Link do projeto de referência: https://www.origamid.com/projetos/typescript/dados/ 💡
 // ==================================================================================================
 import checkInterface from "./checkInterface";
+import Estatisticas from "./Estatisticas";
 import fetchData from "./fetchData";
 import formatarEmReal from "./formatarEmReal";
 import normalizarTransacao from "./normalizarTransacao";
@@ -65,13 +66,13 @@ function preencherTabela(transacoes: Transacao[]): void {
   if (!tabela) return; // error
 
   transacoes.forEach((transacao) => {
-    const alinhamentoPreco = transacao.valor ? "left" : "center";
+    let style = transacao.valor === null ? "center" : "left";
 
     tabela.innerHTML += `
       <tr>
         <td>${transacao.nome}</td>
         <td>${transacao.email}</td>
-        <td style="text-align: ${alinhamentoPreco};">
+        <td style="text-align: ${style};">
           ${transacao.valor ? formatarEmReal(transacao.valor) : "-"}
         </td>
         <td>${transacao.pagamento}</td>
@@ -79,6 +80,30 @@ function preencherTabela(transacoes: Transacao[]): void {
       </tr>
     `;
   });
+
+  preencherEstatisticas(transacoes);
+}
+
+function preencherEstatisticas(transacoes: Transacao[]): void {
+  const data = new Estatisticas(transacoes);
+
+  const totalElement = document.querySelector<HTMLElement>("#total span");
+  if (totalElement) {
+    totalElement.innerText = `${formatarEmReal(data.total)}`;
+  }
+
+  function preencherListas(lista: ContadorLista, parentElementID: string) {
+    const parentElement = document.getElementById(parentElementID);
+
+    if (parentElement) {
+      Object.keys(lista).forEach((key) => {
+        parentElement.innerHTML += `<p>${key}: ${lista[key]}</p>`;
+      });
+    }
+  }
+
+  preencherListas(data.pagamento, "pagamento");
+  preencherListas(data.status, "status");
 }
 
 handleData();

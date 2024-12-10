@@ -22,12 +22,19 @@ declare global {
     nome: string;
     id: number;
     data: Date;
-    status: string;
+    status: StatusTransacao;
     email: string;
     moeda: string;
     valor: number | null; // para os valores "-"
     pagamento: PagamentoTransacao;
     novo: boolean;
+  }
+
+  type TransacaoNova = Transacao & { valor: number };
+  // - Com o uso da interseção ao criar o tipo "TransacaoNova", ela se torna quase uma cópia perfeita da interface "Transacao", com a diferença de que naquela a propriedade "valor" será anotada apenas como sendo do tipo "number", ou seja, essa propriedade será reescrita 💡
+
+  interface ContadorLista {
+    [key: string]: number;
   }
 }
 

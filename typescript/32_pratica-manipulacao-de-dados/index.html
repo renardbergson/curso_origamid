@@ -5,6 +5,10 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
+      body {
+        font-family: sans-serif;
+      }
+
       h2,
       p {
         margin-left: 1rem;
@@ -15,7 +19,7 @@
         padding-top: 1rem;
       }
 
-      p {
+      div {
         border-top: 3px solid ghostwhite;
       }
 
@@ -34,8 +38,9 @@
         padding: 0.5rem 1rem;
       }
 
-      table td {
-        font-size: 0.85rem;
+      table td,
+      p {
+        font-size: 0.75rem;
       }
     </style>
     <title>Prática: Manipulação de Dados</title>
@@ -56,6 +61,19 @@
         <!-- dados vindos da API -->
       </tbody>
     </table>
+
+    <h2>Estatísticas</h2>
+    <div id="total">
+      <p>Total: <span></span></p>
+    </div>
+
+    <div id="pagamento"></div>
+
+    <div id="status"></div>
+
+    <div id="dia">
+      <p>Dia da semana com mais vendas: ...</p>
+    </div>
 
     <script type="module" src="/src/main.ts"></script>
   </body>
