@@ -92,7 +92,10 @@ function preencherEstatisticas(transacoes: Transacao[]): void {
     totalElement.innerText = `${formatarEmReal(data.total)}`;
   }
 
-  function preencherListas(lista: ContadorLista, parentElementID: string) {
+  function preencherListas(
+    lista: ContadorLista,
+    parentElementID: string
+  ): void {
     const parentElement = document.getElementById(parentElementID);
 
     if (parentElement) {
@@ -104,6 +107,11 @@ function preencherEstatisticas(transacoes: Transacao[]): void {
 
   preencherListas(data.pagamento, "pagamento");
   preencherListas(data.status, "status");
+
+  const melhorDiaElement = document.getElementById("melhorDia");
+  if (melhorDiaElement) {
+    melhorDiaElement.innerHTML = `<p>Dia da semana com mais vendas: ${data.melhorDia[0]}</p>`;
+  }
 }
 
 handleData();
